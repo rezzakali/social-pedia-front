@@ -15,6 +15,8 @@ import {
 } from '@material-tailwind/react';
 import React, { useState } from 'react';
 import { IoMdArrowDropdown } from 'react-icons/io';
+import { useDispatch, useSelector } from 'react-redux';
+import { Logout } from '../../../features/auth/authSlice';
 
 // profile menu component
 const profileMenuItems = [
@@ -34,16 +36,15 @@ const profileMenuItems = [
     label: 'Help',
     icon: LifebuoyIcon,
   },
-  {
-    label: 'Sign Out',
-    icon: PowerIcon,
-  },
 ];
 
 const ProfileMenu = () => {
+  const { user } = useSelector((state) => state.auth);
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const closeMenu = () => setIsMenuOpen(false);
+  const dispatch = useDispatch();
 
   return (
     <Menu
@@ -59,7 +60,7 @@ const ProfileMenu = () => {
           className="flex items-center ml-auto capitalize gap-2 dark:text-darkText dark:ring-darkGray dark:bg-darkGray bg-lightBlue"
         >
           {' '}
-          Rezzak
+          {user?.firstname}
           <IoMdArrowDropdown
             strokeWidth={2.5}
             className={`h-3 w-3 transition-transform ${
@@ -70,32 +71,37 @@ const ProfileMenu = () => {
       </MenuHandler>
       <MenuList className="dark:bg-darkBg dark:text-darkText p-1 border-none dark:shadow-none">
         {profileMenuItems.map(({ label, icon }, key) => {
-          const isLastItem = key === profileMenuItems.length - 1;
           return (
             <MenuItem
               key={label}
               onClick={closeMenu}
-              className={`flex items-center gap-2 rounded ${
-                isLastItem
-                  ? 'hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10'
-                  : 'dark:hover:bg-darkGray dark:hover:text-darkText'
+              className={`flex items-center gap-2 rounded 'dark:hover:bg-darkGray dark:hover:text-darkText'
               }`}
             >
               {React.createElement(icon, {
-                className: `h-4 w-4 ${isLastItem ? 'text-red-500' : ''}`,
+                className: `h-4 w-4 }`,
                 strokeWidth: 2,
               })}
-              <Typography
-                as="span"
-                variant="small"
-                className="font-normal"
-                color={isLastItem ? 'red' : 'inherit'}
-              >
+              <Typography as="span" variant="small" className="font-normal">
                 {label}
               </Typography>
             </MenuItem>
           );
         })}
+        <MenuItem
+          onClick={() => dispatch(Logout())}
+          className={`flex items-center gap-2 rounded 'hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10`}
+        >
+          <PowerIcon className="h-4 w-4 text-red-400" />
+          <Typography
+            as="span"
+            variant="small"
+            className="font-normal"
+            color="red"
+          >
+            Sign Out
+          </Typography>
+        </MenuItem>
       </MenuList>
     </Menu>
   );

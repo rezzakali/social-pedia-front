@@ -2,6 +2,10 @@ import {
   Avatar,
   Button,
   Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  Checkbox,
   Collapse,
   IconButton,
   Input,
@@ -12,13 +16,17 @@ import {
   MobileNav,
   Navbar,
   Tooltip,
-  Typography
+  Typography,
 } from '@material-tailwind/react';
 
 export {
   Avatar,
   Button,
   Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  Checkbox,
   Collapse,
   IconButton,
   Input,
@@ -27,6 +35,7 @@ export {
   MenuItem,
   MenuList,
   MobileNav,
-  Navbar, Tooltip, Typography
+  Navbar,
+  Tooltip,
+  Typography,
 };
-

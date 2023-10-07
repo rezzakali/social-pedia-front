@@ -26,7 +26,7 @@ const Navigation = () => {
   }, []);
 
   return (
-    <Navbar className="sticky top-0 inset-0 z-50 max-w-full rounded-none py-1 shadow-none bg-[#ffffff] dark:bg-darkBg border-none">
+    <Navbar className="sticky top-0 inset-0 z-50 max-w-full rounded-none shadow-none dark:bg-darkBg border-none p-3">
       <div className="flex items-center justify-between text-gray-900 gap-5">
         <Typography
           as="a"
@@ -39,17 +39,17 @@ const Navigation = () => {
         <div className="flex items-center gap-4 dark:text-white">
           <div className="flex items-center justify-center gap-10">
             <ColorMode />
-            <Tooltip content="Messages" className="dark:bg-darkGray">
+            <Tooltip content="Messages" className="bg-darkGray">
               <div>
                 <BiMessageDetail className="cursor-pointer" />
               </div>
             </Tooltip>
-            <Tooltip content="Notifications" className="dark:bg-darkGray">
+            <Tooltip content="Notifications" className="bg-darkGray">
               <div>
                 <IoNotificationsSharp className="cursor-pointer" />
               </div>
             </Tooltip>
-            <Tooltip content="Questions" className="dark:bg-darkGray">
+            <Tooltip content="Questions" className="bg-darkGray">
               <div>
                 <AiFillQuestionCircle className="cursor-pointer" />
               </div>

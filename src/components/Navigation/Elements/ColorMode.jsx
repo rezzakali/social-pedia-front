@@ -20,7 +20,7 @@ const ColorMode = () => {
     <>
       <Tooltip
         content={theme === 'dark' ? 'Light' : 'Dark'}
-        className="dark:bg-darkGray"
+        className="bg-darkGray"
       >
         <div>
           {theme === 'dark' ? (
