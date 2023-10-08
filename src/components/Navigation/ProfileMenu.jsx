@@ -6,6 +6,7 @@ import {
   UserCircleIcon,
 } from '@heroicons/react/24/outline';
 import {
+  Avatar,
   Button,
   Menu,
   MenuHandler,
@@ -16,7 +17,7 @@ import {
 import React, { useState } from 'react';
 import { IoMdArrowDropdown } from 'react-icons/io';
 import { useDispatch, useSelector } from 'react-redux';
-import { Logout } from '../../../features/auth/authSlice';
+import { Logout } from '../../features/auth/authSlice';
 
 // profile menu component
 const profileMenuItems = [
@@ -57,10 +58,13 @@ const ProfileMenu = () => {
         <Button
           size="sm"
           variant="text"
-          className="flex items-center ml-auto capitalize gap-2 dark:text-darkText dark:ring-darkGray dark:bg-darkGray bg-lightBlue"
+          className="flex items-center ml-auto capitalize gap-2 hover:bg-transparent dark:text-darkText"
         >
-          {' '}
-          {user?.firstname}
+          <Avatar
+            src={user?.profileImage}
+            alt="avatar"
+            className="w-9 h-9 rounded-full"
+          />
           <IoMdArrowDropdown
             strokeWidth={2.5}
             className={`h-3 w-3 transition-transform ${
@@ -70,13 +74,12 @@ const ProfileMenu = () => {
         </Button>
       </MenuHandler>
       <MenuList className="dark:bg-darkBg dark:text-darkText p-1 border-none dark:shadow-none">
-        {profileMenuItems.map(({ label, icon }, key) => {
+        {profileMenuItems.map(({ label, icon }, index) => {
           return (
             <MenuItem
-              key={label}
+              key={index}
               onClick={closeMenu}
-              className={`flex items-center gap-2 rounded 'dark:hover:bg-darkGray dark:hover:text-darkText'
-              }`}
+              className="flex items-center gap-2 rounded dark:hover:bg-lightDark dark:hover:text-darkText"
             >
               {React.createElement(icon, {
                 className: `h-4 w-4 }`,

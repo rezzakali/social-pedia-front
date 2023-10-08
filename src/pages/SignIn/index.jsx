@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { PiEye, PiEyeSlash } from 'react-icons/pi';
 import { Link, useNavigate } from 'react-router-dom';
+
 import {
   Button,
   Card,
@@ -10,10 +11,10 @@ import {
   CardFooter,
   Input,
   Typography,
-} from '../components/MTComponents';
-import { useSigninMutation } from '../features/auth/authApi';
+} from '@material-tailwind/react';
+import { useSigninMutation } from '../../features/auth/authApi';
 
-const SignIn = () => {
+const index = () => {
   const {
     register,
     handleSubmit,
@@ -114,4 +115,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default index;

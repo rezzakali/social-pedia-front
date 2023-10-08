@@ -2,10 +2,9 @@ import React, { Fragment } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
-import Layout from './components/Layout';
 import Navigation from './components/Navigation';
 import useAuthCheck from './hooks/useAuthCheck';
-import Home from './pages/Home';
+import Home from './pages/Home/index';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import NotFound from './protect_routes/Not-Found';
@@ -19,37 +18,33 @@ const App = () => {
   return (
     <Fragment>
       {token !== null && user !== null && user?._id && <Navigation />}
-      <div className="bg-[#f0f2f5] dark:bg-[#18191a]">
-        <Layout>
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <PublicRoute>
-                  <SignIn />
-                </PublicRoute>
-              }
-            />
-            <Route
-              path="/signup"
-              element={
-                <PublicRoute>
-                  <SignUp />
-                </PublicRoute>
-              }
-            />
-            <Route
-              path="/home"
-              element={
-                <PrivateRoute>
-                  <Home />
-                </PrivateRoute>
-              }
-            />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Layout>
-      </div>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <PublicRoute>
+              <SignIn />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/signup"
+          element={
+            <PublicRoute>
+              <SignUp />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/home"
+          element={
+            <PrivateRoute>
+              <Home />
+            </PrivateRoute>
+          }
+        />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
       <Toaster position="bottom-right" />
     </Fragment>
   );

@@ -1,8 +1,8 @@
+import { Tooltip } from '@material-tailwind/react';
 import { useTheme } from 'next-themes';
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { BsFillSunFill } from 'react-icons/bs';
 import { HiMoon } from 'react-icons/hi';
-import { Tooltip } from '../../MTComponents';
 
 const ColorMode = () => {
   const { theme, setTheme } = useTheme();
@@ -17,7 +17,7 @@ const ColorMode = () => {
   }
 
   return (
-    <>
+    <Fragment>
       <Tooltip
         content={theme === 'dark' ? 'Light' : 'Dark'}
         className="bg-darkGray"
@@ -36,7 +36,7 @@ const ColorMode = () => {
           )}
         </div>
       </Tooltip>
-    </>
+    </Fragment>
   );
 };
 

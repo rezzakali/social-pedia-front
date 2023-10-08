@@ -15,7 +15,7 @@ export default withMT({
       darkText: '#e4e6eb',
       // LIGHT
       lightGray: '#f0f2f5',
-      lightBlue: '#f0f2f5',
+      lightDark: '#55555520',
     },
     screens: {
       sm: '320px',
