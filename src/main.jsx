@@ -11,7 +11,7 @@ import './index.css';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <Provider store={store}>
-      <NextThemeProvider attribute="class" enableSystem={false}>
+      <NextThemeProvider attribute="class" defaultTheme="system">
         <ThemeProvider>
           <App />
         </ThemeProvider>

@@ -1,29 +1,26 @@
-import { Input } from '@material-tailwind/react';
 import { useState } from 'react';
 import { GoSearch } from 'react-icons/go';
 import { MdClose } from 'react-icons/md';
 
 const SearchInput = () => {
   const [value, setValue] = useState('');
+
   return (
-    <div className="sm:w-10 md:w-96 lg:w-96 gap-2">
-      <Input
-        size="md"
+    <div className="relative transition-width">
+      <input
+        type="text"
+        placeholder={'Search'}
+        className="p-1 pl-5 pr-8 w-full border rounded-full dark:text-darkText dark:border-none focus:outline-none"
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        placeholder="Search"
-        className="dark:bg-darkGray dark:text-darkText rounded-full border-none ring-1 ring-lightGray dark:ring-darkGray bg-gray-400/50 pl-4"
-        labelProps={{
-          className: 'hidden',
-        }}
-        icon={
-          value ? (
-            <MdClose className="cursor-pointer" onClick={() => setValue('')} />
-          ) : (
-            <GoSearch />
-          )
-        }
       />
+      <div className="absolute top-1/2 transform -translate-y-1/2 right-3 text-gray-400">
+        {value ? (
+          <MdClose className="cursor-pointer" onClick={() => setValue('')} />
+        ) : (
+          <GoSearch className="w-4 h-4" />
+        )}
+      </div>
     </div>
   );
 };

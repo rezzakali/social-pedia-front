@@ -36,7 +36,9 @@ const index = () => {
       password,
       file,
       occupassion,
+      location,
     } = data;
+
     const formData = new FormData();
     formData.append('firstname', firstname);
     formData.append('lastname', lastname);

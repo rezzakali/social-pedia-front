@@ -1,8 +1,8 @@
 import { Badge, Navbar, Tooltip, Typography } from '@material-tailwind/react';
 import React, { useEffect, useState } from 'react';
-import { AiFillQuestionCircle } from 'react-icons/ai';
 import { BiMessageDetail } from 'react-icons/bi';
 import { IoNotificationsSharp } from 'react-icons/io5';
+import { Link } from 'react-router-dom';
 import ColorMode from './ColorMode';
 import ProfileMenu from './ProfileMenu';
 import SearchInput from './SearchInput';
@@ -20,15 +20,18 @@ const Navigation = () => {
   return (
     <Navbar className="sticky top-0 inset-0 z-50 max-w-full rounded-none shadow-none dark:bg-lightDark border-none p-3">
       <div className="flex items-center justify-between text-gray-900 gap-5">
-        <Typography
-          as="a"
-          href="#"
-          className="cursor-pointer py-1.5 font-extrabold text-[#5CD2E6] sm:text-sm md:text-3xl lg:text-3xl"
-        >
-          Socialpedia
-        </Typography>
-        <SearchInput />
-        <div className="flex items-center gap-4 dark:text-white">
+        <div className="flex items-center justify-center gap-2">
+          <Link to="/home">
+            <Typography className="cursor-pointer py-1.5 font-extrabold text-[#5CD2E6] sm:text-xl md:text-3xl lg:text-3xl hidden md:block lg:block">
+              Socialpedia
+            </Typography>
+            <Typography className="cursor-pointer py-1.5 font-extrabold text-[#5CD2E6] sm:text-xl md:text-3xl lg:text-3xl md:hidden lg:hidden sm:block">
+              SP
+            </Typography>
+          </Link>
+          <SearchInput />
+        </div>
+        <div className="flex items-center gap-4 dark:text-white mr-1">
           <div className="items-center justify-center gap-10 hidden lg:flex">
             <ColorMode />
             <Tooltip content="Messages" className="bg-darkGray">
@@ -41,13 +44,10 @@ const Navigation = () => {
                 <IoNotificationsSharp className="cursor-pointer" />
               </Badge>
             </Tooltip>
-            <Tooltip content="Questions" className="bg-darkGray">
-              <div>
-                <AiFillQuestionCircle className="cursor-pointer" />
-              </div>
-            </Tooltip>
           </div>
-          <ProfileMenu />
+          <div className="lg:hidden">
+            <ProfileMenu />
+          </div>
         </div>
       </div>
       {/* <Collapse open={openNav}>

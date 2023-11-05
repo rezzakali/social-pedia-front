@@ -38,7 +38,12 @@ const AddPost = () => {
       formData.append('image', file);
       createPost(formData);
     } else {
-      toast.error('Something went wrong!');
+      toast.error('Something went wrong!', {
+        style: {
+          background: '#333',
+          color: '#fff',
+        },
+      });
     }
   };
 
@@ -71,8 +76,8 @@ const AddPost = () => {
       </div>
       {imageUrl && <img src={imageUrl} alt="image" className="object-cover" />}
       <hr />
-      <div className="flex items-center gap-4 justify-between dark:text-white my-2">
-        <div className="items-center justify-center gap-5 hidden lg:flex">
+      <div className="flex flex-wrap items-center justify-between dark:text-white my-2">
+        <div className="flex  items-center justify-start gap-2">
           <Tooltip
             content="Add image"
             className="bg-darkGray"
@@ -80,7 +85,7 @@ const AddPost = () => {
           >
             <label
               htmlFor="fileInput"
-              className="flex items-center gap-1 cursor-pointer"
+              className="flex items-center gap-1 cursor-pointer dark:hover:bg-darkGray px-1 rounded"
             >
               <input
                 type="file"
@@ -98,13 +103,13 @@ const AddPost = () => {
             className="bg-darkGray"
             placement="bottom"
           >
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-1 dark:hover:bg-darkGray px-1 rounded">
               <IoMdAttach className="cursor-pointer" />
               <Typography>Attachment</Typography>
             </div>
           </Tooltip>
           <Tooltip content="Audio" className="bg-darkGray" placement="bottom">
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-1 dark:hover:bg-darkGray px-1 rounded">
               <AiFillAudio className="cursor-pointer" />
               <Typography>Audio</Typography>
             </div>
@@ -113,7 +118,7 @@ const AddPost = () => {
         {imageUrl && (
           <Button
             size="sm"
-            className="rounded-full capitalize shadow-none bg-[#faa0a0] text-black hover:shadow-none dark:text-red-800"
+            className="rounded capitalize shadow-none bg-[#faa0a0] text-black hover:shadow-none dark:text-red-800 mt-1"
             onClick={() => {
               setValue('');
               setImageUrl(null);
@@ -124,7 +129,7 @@ const AddPost = () => {
         )}
         <Button
           size="sm"
-          className="bg-lightGray dark:bg-darkGray rounded-full capitalize shadow-none text-black hover:shadow-none dark:text-darkText"
+          className="bg-lightGray dark:bg-darkGray rounded capitalize shadow-none text-black hover:shadow-none dark:text-darkText mt-1"
           onClick={addPostHandler}
           disabled={isLoading}
         >

@@ -8,7 +8,6 @@ const apiSlice = createApi({
     refetchOnMountOrArgChange: 30,
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.token;
-      // If we have a token set in state, let's assume that we should be passing it.
       if (token) {
         headers.set('x-access-token', `${token}`);
       }

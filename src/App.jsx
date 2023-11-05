@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import useAuthCheck from './hooks/useAuthCheck';
+import Friend from './pages/Friend';
 import Home from './pages/Home/index';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
@@ -40,6 +41,14 @@ const App = () => {
           element={
             <PrivateRoute>
               <Home />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path={`/home/:id`}
+          element={
+            <PrivateRoute>
+              <Friend />
             </PrivateRoute>
           }
         />

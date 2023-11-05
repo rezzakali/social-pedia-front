@@ -12,6 +12,9 @@ const Feeds = () => {
     isError,
     error,
   } = useGetPostsQuery();
+  // polling invterval for 5 minutes
+  // undefined, { pollingInterval: 300000 }
+
   return (
     <Fragment>
       <AddPost />
@@ -25,7 +28,7 @@ const Feeds = () => {
         !isError &&
         posts?.posts?.length > 0 &&
         posts.posts.map((post, index) => {
-          return <Feed key={index} post={post} />;
+          return <Feed key={index} post={post} isSingleUserId={null} />;
         })}
 
       {/* {Array.from({ length: 6 }, (_, index) => (
