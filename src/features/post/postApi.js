@@ -1,3 +1,4 @@
+import { current } from '@reduxjs/toolkit';
 import apiSlice from '../api/apiSlice';
 
 const postApi = apiSlice.injectEndpoints({
@@ -8,7 +9,6 @@ const postApi = apiSlice.injectEndpoints({
         url: '/posts',
         method: 'GET',
       }),
-      providesTags: ['Posts'],
     }),
 
     // CREATE POSTS
@@ -18,7 +18,6 @@ const postApi = apiSlice.injectEndpoints({
         method: 'POST',
         body: data,
       }),
-      invalidatesTags: ['Posts'],
     }),
 
     // ############### GET USER'S POSTS ##############
@@ -27,6 +26,7 @@ const postApi = apiSlice.injectEndpoints({
         url: `/posts/${userId}`,
         method: 'GET',
       }),
+      providesTags: ['UserPosts'],
     }),
     // ############# LIKE A POST ###############
     likeAPost: builder.mutation({
@@ -35,6 +35,8 @@ const postApi = apiSlice.injectEndpoints({
         method: 'PATCH',
         body: { userId },
       }),
+
+      // invalidatesTags: ['UserPosts'],
 
       async onQueryStarted(arg, { queryFulfilled, dispatch }) {
         try {
@@ -51,6 +53,24 @@ const postApi = apiSlice.injectEndpoints({
               }
             })
           );
+
+          dispatch(
+            apiSlice.util.updateQueryData(
+              'getUserPosts',
+              { userId: arg.userId },
+              (draft) => {
+                const post = draft.posts.find(
+                  (post) => post._id === arg.postId
+                );
+                console.log(current(post));
+                if (post) {
+                  const findIndex = draft.posts.indexOf(post);
+                  draft.posts[findIndex] = response?.data?.updatedPost;
+                }
+              }
+            )
+          );
+          // console.log(response);
         } catch (error) {
           console.log(error);
         }
