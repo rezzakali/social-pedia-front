@@ -45,7 +45,7 @@ const index = () => {
   return (
     <div className="flex items-center justify-center h-screen">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Card className="w-96 m-auto">
+        <Card className="w-96 m-auto dark:bg-lightDark dark:text-darkText shadow-none">
           <CardBody className="flex flex-col gap-3">
             <div>
               <Input
@@ -57,6 +57,7 @@ const index = () => {
                   pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
                 })}
                 required
+                className="text-white"
               />
               {errors.email && (
                 <span className="text-red-400">This field is required!</span>
@@ -67,6 +68,7 @@ const index = () => {
                 type={showPassword ? 'text' : 'password'}
                 label="Password"
                 size="md"
+                className="dark:text-white"
                 {...register('password', {
                   required: true,
                   minLength: 6,
@@ -95,10 +97,11 @@ const index = () => {
           </CardBody>
           <CardFooter className="pt-0">
             <Button
-              variant="gradient"
+              variant="outlined"
               type="submit"
               disabled={isLoading}
               fullWidth
+              className="shadow-none hover:shadow-none dark:text-white"
             >
               {isLoading ? 'Loading...' : ' Sign In'}
             </Button>

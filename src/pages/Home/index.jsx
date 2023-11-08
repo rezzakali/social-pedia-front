@@ -12,7 +12,7 @@ const index = () => {
       <div className="w-1/3 p-3 hidden lg:block">
         <ProfileMenuCard user={user} />
       </div>
-      <div className="sm:w-full lg:w-2/3 p-3  space-y-3">
+      <div className="sm:w-full lg:w-2/3 p-3 space-y-3">
         <Feeds />
       </div>
       <div className="w-1/3 p-3 space-y-3 hidden lg:block">

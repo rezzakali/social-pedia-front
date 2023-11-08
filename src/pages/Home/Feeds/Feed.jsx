@@ -12,14 +12,14 @@ import { BiComment, BiLike } from 'react-icons/bi';
 import { FiUserMinus, FiUserPlus } from 'react-icons/fi';
 import { PiShareFatLight } from 'react-icons/pi';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useLikeAPostMutation } from '../../../features/post/postApi';
 import { setPostId } from '../../../features/post/postSlice';
 import { useAddRemoveFriendMutation } from '../../../features/user/userApi';
 import AddComment from './AddComment';
 import CommentsModal from './Modals/CommentsModal';
 
-const Feed = ({ post, isSingleUserId }) => {
+const Feed = ({ post }) => {
   // State for comments
   const [showAddCommentInput, setShowAddCommentInput] = useState(false);
   const [showCommentsModal, setShowCommentsModal] = useState(false);
@@ -47,6 +47,8 @@ const Feed = ({ post, isSingleUserId }) => {
     _id,
   } = post || {};
 
+  const params = useParams();
+
   const dispatch = useDispatch();
 
   // Select the 'user' from the Redux store.
@@ -62,6 +64,9 @@ const Feed = ({ post, isSingleUserId }) => {
 
   // Check if the user is a friend based on 'friends' data and 'userId'.
   const isFrien = friends?.find((friend) => friend._id === userId);
+  // const res = friends?.find((friend) => friend._id === params?.id);
+  // console.log(res);
+  // console.log(friends);
   // Convert to a boolean
   const isFriendStatus = !!isFrien;
 
@@ -127,7 +132,7 @@ const Feed = ({ post, isSingleUserId }) => {
               <Typography className="text-xs">{location}</Typography>
             </div>
           </div>
-          {user?._id !== userId && !isSingleUserId && (
+          {user?._id !== userId && (
             <Tooltip
               content={`${isFriend ? 'Remove friend' : 'Add friend'}`}
               className="bg-darkBg"

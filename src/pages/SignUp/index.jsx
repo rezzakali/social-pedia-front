@@ -66,7 +66,7 @@ const index = () => {
   return (
     <div className="flex items-center justify-center h-screen">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Card className="lg:w-[40rem] md:w-[40rem] sm:w-full m-auto">
+        <Card className="lg:w-[40rem] md:w-[40rem] sm:w-full m-auto  dark:bg-lightDark dark:text-darkText shadow-none">
           <CardBody className="flex flex-col gap-3">
             <div className="w-full flex lg:flex-row md:flex-row sm:flex-col items-center justify-between gap-3">
               <div className="w-full">
@@ -203,10 +203,11 @@ const index = () => {
           </CardBody>
           <CardFooter className="pt-0">
             <Button
-              variant="gradient"
+              variant="outlined"
               type="submit"
               disabled={isLoading}
               fullWidth
+              className="dark:text-white"
             >
               {isLoading ? 'Loading...' : ' Sign Up'}
             </Button>

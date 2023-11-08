@@ -28,7 +28,7 @@ const Feeds = () => {
         !isError &&
         posts?.posts?.length > 0 &&
         posts.posts.map((post, index) => {
-          return <Feed key={index} post={post} isSingleUserId={null} />;
+          return <Feed key={index} post={post} />;
         })}
 
       {/* {Array.from({ length: 6 }, (_, index) => (

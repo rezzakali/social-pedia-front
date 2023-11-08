@@ -1,3 +1,4 @@
+import { Typography } from '@material-tailwind/react';
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useGetPostsQuery } from '../../features/post/postApi';
@@ -16,16 +17,13 @@ const index = () => {
     error,
   } = useGetUserQuery(id);
 
-  // const {
-  //   data: posts,
-  //   isLoading: isPostsLoading,
-  //   isSuccess: isPostsSuccess,
-  //   isError: isPostsError,
-  //   error: postsError,
-  // } = useGetUserPostsQuery({ userId: id });
-  const { data: posts } = useGetPostsQuery();
-  const filtedPosts = posts?.posts?.filter((post) => post.userId === id);
-  console.log(filtedPosts);
+  const {
+    data: posts,
+    isLoading: isPostsLoading,
+    isError: isPostsError,
+    error: postsError,
+  } = useGetPostsQuery();
+  const filteredPosts = posts?.posts?.filter((post) => post.userId === id);
 
   return (
     <div className="flex">
@@ -33,17 +31,18 @@ const index = () => {
         {!isLoading && !isError && <ProfileMenuCard user={user?.user} />}
       </div>
       <div className="sm:w-full lg:w-2/3 p-3 h-[calc(100vh-7rem)] space-y-3">
-        {/* {isPostsLoading && <Typography>Loading...</Typography>}
+        {isPostsLoading && <Typography>Loading...</Typography>}
         {!isPostsLoading && isPostsError && (
           <Typography>{postsError?.data?.message}</Typography>
         )}
         {!isPostsLoading && !isPostsError && posts?.posts?.length <= 0 && (
           <Typography>No posts</Typography>
-        )} */}
-        {/* !isPostsLoading &&
-          !isPostsError && */}
-        {filtedPosts?.length > 0 &&
-          filtedPosts.map((post, index) => {
+        )}
+
+        {!isPostsLoading &&
+          !isPostsError &&
+          filteredPosts?.length > 0 &&
+          filteredPosts.map((post, index) => {
             return <Feed key={index} post={post} />;
           })}
       </div>
